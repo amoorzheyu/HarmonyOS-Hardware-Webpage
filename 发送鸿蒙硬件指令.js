@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         ti-select 批量设置值并触发事件（GM 请求版）
+// @name         发送鸿蒙硬件指令
 // @namespace    http://tampermonkey.net/
-// @version      0.7
-// @match        https://console.huaweicloud.com/iotdm/*
+// @version      0.1
+// @match       https://console.huaweicloud.com/iotdm/*
 // @grant        GM_xmlhttpRequest
 // @connect      localhost
 // ==/UserScript==
@@ -12,7 +12,7 @@
 
   // 可变的目标选项（初始也可保持任意结构，后端返回时覆盖）
   let targetOptions = { service: "", command: "", value: "" };
-  
+
 
   let counter = 0;
   /**
@@ -140,6 +140,10 @@
   }
 
   window.addEventListener("load", () => {
+        if (!location.hash.includes("dm-portal/monitor/online-debugger")) {
+    console.log("当前不是在线调试页，不执行脚本");
+    return;
+  }
     setInterval(runLoop, 200);
   });
 })();
