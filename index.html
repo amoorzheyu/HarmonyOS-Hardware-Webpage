@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>眨眼睛鸿蒙硬件</title>
+  </head>
+  <body>
+    <div class="loader">
+      <span style="--d: 100ms">H</span>
+      <span style="--d: 250ms">u</span>
+      <span style="--d: 400ms">a</span>
+      <span style="--d: 550ms">W</span>
+      <span style="--d: 700ms">e</span>
+      <span style="--d: 850ms">i</span>
+    </div>
+    <!-- From Uiverse.io by m1her -->
+    <div class="radio-input">
+      <label class="label">
+        <input value="value-1" name="value-radio" id="value-1" type="radio" />
+        <span class="text" id="temperature">温度</span>
+      </label>
+      <label class="label">
+        <input value="value-1" name="value-radio" id="value-1" type="radio" />
+        <span class="text" id="humidity">湿度</span>
+      </label>
+      <label class="label">
+        <input value="value-1" name="value-radio" id="value-1" type="radio" />
+        <span class="text" id="luminance">光照</span>
+      </label>
+    </div>
+
+    <div id="app">
+      <!-- Container One -->
+      <div class="container1">
+        <input type="checkbox" id="checkbox1" />
+        <label for="checkbox1" class="button1">
+          <span class="icon1">
+            <!-- SVG icon 1 -->
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M563.7 766.7H457c-9.3 0-16.8 7.5-16.8 16.8v1.2c0 9.3 7.5 16.8 16.8 16.8h106.7c9.3 0 16.8-7.5 16.8-16.8v-1.2c0-9.3-7.5-16.8-16.8-16.8zM532 829.8h-43.2c-9.4 0-17.1 7.6-17.1 17.1v0.6c0 9.4 7.6 17.1 17.1 17.1H532c9.4 0 17.1-7.6 17.1-17.1v-0.6c0-9.4-7.7-17.1-17.1-17.1zM510.4 252.6h0.6c9.4 0 17.1-7.6 17.1-17.1v-43.2c0-9.4-7.6-17.1-17.1-17.1h-0.6c-9.4 0-17.1 7.6-17.1 17.1v43.2c0 9.4 7.7 17.1 17.1 17.1zM273.1 488.5l-42.9-5.4c-9.4-1.2-17.9 5.4-19.1 14.8l-0.1 0.5c-1.2 9.4 5.4 17.9 14.8 19.1l42.9 5.4c9.4 1.2 17.9-5.4 19.1-14.8l0.1-0.6c1.2-9.3-5.4-17.9-14.8-19zM812.8 497.9c-1.2-9.4-9.7-16-19.1-14.8l-42.9 5.4c-9.4 1.2-16 9.7-14.8 19.1l0.1 0.6c1.2 9.4 9.7 16 19.1 14.8l42.9-5.4c9.4-1.2 16-9.7 14.8-19.1l-0.1-0.6zM339.1 344.6c6-7.3 5-18-2.2-24L303.6 293c-7.3-6-18-5-24 2.2l-0.4 0.4c-6 7.3-5 18 2.2 24l33.3 27.6c7.3 6 18 5 24-2.2l0.4-0.4zM754.7 295.6l-0.4-0.4c-6-7.3-16.8-8.3-24-2.2L697 320.6c-7.3 6-8.3 16.8-2.2 24l0.4 0.4c6 7.3 16.8 8.3 24 2.2l33.3-27.6c7.2-5.9 8.2-16.7 2.2-24zM510.7 302.8c-100.4 0-182.1 81.7-182.1 182.1 0 36.1 25.3 89.4 54.7 151.2 15.8 33.2 32.1 67.6 43.9 98.7v0.7h166.4l0.5 0.2c11-27.2 25.5-57.8 39.5-87.4C664.1 583.9 693 523 693 484.9c-0.2-100.4-81.9-182.1-182.3-182.1z m91.4 330.7C591.5 656 580.6 679 571 700.9H450.9c-10.9-26.1-23.7-53.2-36.3-79.7-25.2-53.1-51.3-108-51.3-136.3 0-81.3 66.1-147.4 147.4-147.4s147.4 66.1 147.4 147.4c0 30.3-28.5 90.4-56 148.6z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </label>
+      </div>
+
+      <!-- Container Two -->
+      <div class="container2">
+        <input type="checkbox" id="checkbox2" />
+        <label for="checkbox2" class="button2">
+          <span class="icon2">
+            <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M281.9 853.74c-14.29-11.31-31.86-20.25-42.12-34.46-16.16-22.4-11.4-36.81 10.55-54.05 5.9-4.64 11.75-9.34 21.49-17.09-11.89-0.74-19.73-1.39-27.58-1.69-66.12-2.6-120.15-54.43-121.25-120.68-1.6-95.96-1.27-191.97-0.11-287.95 0.66-54.36 36.2-98.97 88.03-115.75 6.36-2.06 12.77-3.96 18.65-5.78 7.39-88.41 15.98-96.22 104.34-96.22 12.75 0 25.5-0.16 38.25 0.04 45.8 0.73 68.75 23.52 69.74 68.95 0.18 8.29 0.75 16.58 1.25 27.26 71.14 0 140.63-0.13 210.11 0.11 13.54 0.05 27.4-0.1 40.56 2.56 59.07 11.92 91.85 50.92 104.72 124.86 12.1 0 24.68-0.25 37.24 0.04 50.48 1.19 85.31 33.57 87.46 83.99 1.67 39 1.64 78.18 0.04 117.19-2.11 51.48-37.48 83.7-89.58 84.27-11.78 0.13-23.55 0.02-35.72 0.02-15.04 75.56-60.11 114.87-139.13 118.55 5.4 5.13 8.52 8.63 12.16 11.45 35.43 27.45 32.73 63.24-6.57 85.79-5.03 2.89-10.08 5.73-15.13 8.59H281.9z m177.88-596.63c-67.16 0-134.31-0.13-201.47 0.04-60.97 0.15-94.89 33.62-95.09 94.34-0.29 86.65-0.29 173.3 0 259.94 0.2 60.68 34.2 94.15 95.23 94.2 131.76 0.11 263.52 0.05 395.28 0.03 66.41-0.01 96.06-26.62 102.18-93.1 1.59-17.21 9.96-24.08 26.19-23.99 16.15 0.09 32.3 0.14 48.45-0.04 35.39-0.39 51.52-15.71 52.25-51.19 0.69-33.97 0.69-67.97 0-101.93-0.71-34.81-17.32-50.27-52.82-50.79-11.9-0.17-23.8-0.01-35.7-0.04-35.7-0.07-37.13-1.46-38.17-37.11-1.61-55.14-36.98-90.05-92.31-90.3-68.01-0.29-136.02-0.06-204.02-0.06z m194.2 548.46c0.16-2.6 0.32-5.2 0.49-7.8-35.46-23.01-63.79-56.69-115.07-52.13-51.33 4.56-103.57 3.75-155.06 0.21-49.02-3.37-75.57 29.69-108.64 56.71 10.29 5.67 20.29 9.43 30.3 9.47 106.01 0.43 212.02 0.44 318.03-0.03 9.99-0.04 19.96-4.19 29.95-6.43zM399.39 215.21c4.5-50.95 1.55-54.34-44.93-54.35-18.6 0-37.2-0.06-55.79 0.07-17.27 0.12-26.97 8.14-26.79 26.22 0.09 9 0.02 18 0.02 28.06h127.49z"
+                fill="currentColor"
+              ></path>
+              <path
+                d="M454.77 568.55c-50.07 0-100.13-0.19-150.2 0.11-15.89 0.1-30.57-2.05-29.98-21.81 0.54-18.06 14.6-19.81 29.44-19.78 100.13 0.22 200.26 0.21 300.39 0.02 15.01-0.03 28.67 2.5 28.86 20.45 0.19 17.85-13.14 21.16-28.32 21.09-50.06-0.23-100.13-0.08-150.19-0.08zM452.8 389.06c50.07 0 100.13 0.14 150.19-0.09 15.63-0.07 30.84 1.54 30.26 21.46-0.52 17.73-14.48 20.16-29.39 20.14-100.13-0.18-200.26-0.19-300.39 0.01-15.09 0.03-28.49-2.77-28.89-20.59-0.41-18.06 12.76-21.15 28.03-21.05 50.06 0.32 100.13 0.13 150.19 0.12z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>
+  <script>
+    let baseUrl = "http://192.168.3.33:3000";
+    let targetOptions = {
+      0: {
+        service: "sdas",
+        command: "Agriculture_Control_light",
+        value: "OFF",
+      },
+      1: {
+        service: "sdas",
+        command: "Agriculture_Control_Motor",
+        value: "OFF",
+      },
+    };
+
+    let LightIsOpen = false;
+    let motorIsOpen = false;
+
+    //获取容器1与容器2加上点击事件
+    const container1 = document.getElementsByClassName("container1")[0];
+    const container2 = document.getElementsByClassName("container2")[0];
+
+    //定时轮询DigitalData
+    setInterval(() => {
+      getDigitalData();
+    }, 1000);
+
+    function debounce(fn, delay = 200) {
+      let timer = null;
+      return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.apply(this, args);
+        }, delay);
+      };
+    }
+
+    const handleClick1 = debounce(function (e) {
+      if (LightIsOpen) {
+        LightIsOpen = false;
+        targetOptions[0].value = "OFF";
+      } else {
+        LightIsOpen = true;
+        targetOptions[0].value = "ON";
+      }
+      postTargetOptions(targetOptions);
+    }, 200);
+
+    const handleClick2 = debounce(function (e) {
+      if (motorIsOpen) {
+        motorIsOpen = false;
+        targetOptions[1].value = "OFF";
+      } else {
+        motorIsOpen = true;
+        targetOptions[1].value = "ON";
+      }
+      postTargetOptions(targetOptions);
+    }, 200);
+
+    function postTargetOptions(options) {
+      fetch(`${baseUrl}/options`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(options),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("提交成功:", data);
+        })
+        .catch((error) => {
+          console.error("提交失败:", error);
+        });
+    }
+
+    container1.addEventListener("click", handleClick1);
+    container2.addEventListener("click", handleClick2);
+
+    var fnTextPopup = function (arr, options) {
+      // arr参数是必须的
+      if (!arr || !arr.length) {
+        return;
+      }
+      // 主逻辑
+      var index = 0;
+      document.documentElement.addEventListener(
+        "click",
+        debounce(function (event) {
+          var x = event.pageX,
+            y = event.pageY;
+          var eleText = document.createElement("span");
+          eleText.className = "text-popup";
+          this.appendChild(eleText);
+          if (arr[index]) {
+            eleText.innerHTML = arr[index];
+          } else {
+            index = 0;
+            eleText.innerHTML = arr[0];
+          }
+          // 动画结束后删除自己
+          eleText.addEventListener("animationend", function () {
+            eleText.parentNode.removeChild(eleText);
+          });
+          // 位置
+          eleText.style.left = x - eleText.clientWidth / 2 + "px";
+          eleText.style.top = y - eleText.clientHeight + "px";
+          // index递增
+          index++;
+        }, 200)
+      );
+    };
+
+    fnTextPopup(["遥遥领先", "强的飞起", "远远超越", "全组A+"]);
+
+    // 函数获取/uploadDigitalData并赋值给温度湿度光照
+    function getDigitalData() {
+      function getValueAndunit(item) {
+        return item.value + item.unit;
+      }
+
+      //发起网络请求
+      fetch(`${baseUrl}/getDigitalData`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          // 赋值给温度湿度光照
+          document.getElementById("temperature").innerHTML = getValueAndunit(
+            data.temperature
+          );
+          document.getElementById("humidity").innerHTML = getValueAndunit(
+            data.humidity
+          );
+          document.getElementById("luminance").innerHTML = getValueAndunit(
+            data.luminance
+          );
+        })
+        .catch((err) => console.log(err));
+    }
+  </script>
+
+  <style>
+    /* From Uiverse.io by m1her */
+    .radio-input {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      /* background-color: black; */
+      padding: 4px;
+      border-radius: 10px;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 99;
+    }
+
+    .radio-input input {
+      display: none;
+    }
+
+    .radio-input .label {
+      width: 90px;
+      height: 60px;
+      background: linear-gradient(to bottom, #333333, rgb(36, 35, 35));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      transition: all 0.1s linear;
+      border-top: 1px solid #4e4d4d;
+      background-color: #333333;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* .label:has(input[type="radio"]:checked) {
+      box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0);
+      background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
+      border-top: none;
+    } */
+
+    .label:first-child {
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
+    }
+
+    .label:last-child {
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .label::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 103%;
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(
+        to bottom,
+        transparent 10%,
+        transparent,
+        transparent 90%
+      );
+      transition: all 0.1s linear;
+      z-index: -1;
+    }
+
+    /* .label:has(input[type="radio"]:checked)::before {
+      background: linear-gradient(
+        to bottom,
+        transparent 10%,
+        #cae2fd63,
+        transparent 90%
+      );
+    } */
+
+    .label .text {
+      font-size: 20px;
+      line-height: 12px;
+      padding: 0px;
+      font-weight: 800;
+      text-transform: uppercase;
+      transition: all 0.1s linear;
+      text-shadow: -1px -1px 1px rgb(224, 224, 224, 0.1),
+        0px 2px 3px rgb(0, 0, 0, 0.3);
+         color: rgb(202, 226, 253);
+      text-shadow: 0px 0px 12px #cae2fd;
+    }
+
+    /* .label input[type="radio"]:checked + .text {
+      color: rgb(202, 226, 253);
+      text-shadow: 0px 0px 12px #cae2fd;
+    } */
+
+    /* From Uiverse.io by Yaya12085 */
+    .loader {
+      font-size: 30px;
+      position: absolute;
+      display: flex;
+      gap: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 7%;
+    }
+    .loader span {
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+      justify-content: center;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #212121;
+      background-color: #4d4c4e;
+      border-radius: 8px;
+      min-width: 40px;
+      animation: peek 1s both infinite;
+      animation-delay: var(--d);
+    }
+
+    @keyframes peek {
+      25% {
+        transform: rotateX(30deg) rotate(-13deg);
+      }
+      50% {
+        transform: translateY(-22px) rotate(3deg) scale(1.1);
+        color: #e83845;
+      }
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      background-color: #212121;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2em;
+      height: 100%;
+    }
+
+    /* Shared dimensions and positioning */
+    .container1,
+    .container2 {
+      width: 7em;
+      height: 7em;
+      position: relative;
+    }
+
+    /* Hide inputs */
+    .container1 input,
+    .container2 input {
+      display: none;
+    }
+
+    /* Button styling */
+    .button1,
+    .button2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid #090909;
+      background-image: linear-gradient(145deg, #171717, #444245);
+      box-sizing: border-box;
+      box-shadow: inset 2px 2px 0 #7d7c7e, inset -2px -2px 0 #1c1c1c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Outer glow */
+    .button1::before,
+    .button2::before {
+      content: "";
+      position: absolute;
+      width: 7.25em;
+      height: 7.25em;
+      border-radius: 50%;
+      background-image: linear-gradient(145deg, #262626, #606060);
+      z-index: -1;
+      box-shadow: 11px 11px 22px #141414, -11px -11px 22px #525252;
+    }
+
+    /* Icon sizing */
+    .icon1,
+    .icon2 {
+      width: 60px;
+      height: 60px;
+      display: inline-block;
+    }
+    .icon1 svg,
+    .icon2 svg {
+      width: 100%;
+      height: 100%;
+      fill: #a5a5a5;
+    }
+
+    /* Checked state for Container One */
+    .container1 input:checked + .button1 {
+      box-shadow: inset -2px -2px 0 #5e5e5e, inset 2px 2px 0 #1c1c1c;
+      border-color: lime;
+      animation: animeBorder1 0.3s linear alternate-reverse infinite;
+    }
+    .container1 input:checked + .button1 .icon1 svg path {
+      fill: lime;
+      animation: animeFill1 0.3s linear alternate-reverse infinite;
+    }
+
+    /* Checked state for Container Two */
+    .container2 input:checked + .button2 {
+      box-shadow: inset -2px -2px 0 #5e5e5e, inset 2px 2px 0 #1c1c1c;
+      border-color: cyan;
+      animation: animeBorder2 0.3s linear alternate-reverse infinite;
+    }
+    .container2 input:checked + .button2 .icon2 svg path {
+      fill: cyan;
+      animation: animeFill2 0.3s linear alternate-reverse infinite;
+    }
+
+    /* Animations */
+    @keyframes animeFill1 {
+      to {
+        fill: lime;
+      }
+    }
+    @keyframes animeBorder1 {
+      to {
+        border-color: lime;
+      }
+    }
+    @keyframes animeFill2 {
+      to {
+        fill: cyan;
+      }
+    }
+    @keyframes animeBorder2 {
+      to {
+        border-color: cyan;
+      }
+    }
+
+    .text-popup {
+      animation: textPopup 2s;
+      color: red;
+      user-select: none;
+      white-space: nowrap;
+      position: absolute;
+      z-index: 99;
+      font-size: 30px;
+    }
+
+    @keyframes textPopup {
+      0%,
+      100% {
+        opacity: 0;
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px);
+      }
+    }
+
+    #leimu,
+    #lamu {
+      display: none;
+    }
+  </style>
+  <script src="./libs/jquery.min.js"></script>
+  <script src="./libs/leimu.js"></script>
+  <script src="./libs/bolang.js"></script>
+</html>
