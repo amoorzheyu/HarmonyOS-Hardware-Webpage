@@ -68,7 +68,7 @@
     </div>
   </body>
   <script>
-    let baseUrl = "http://192.168.3.33:3000";
+    let baseUrl = "http://192.168.77.189:3000";
     let targetOptions = {
       0: {
         service: "sdas",
@@ -92,7 +92,7 @@
     //定时轮询DigitalData
     setInterval(() => {
       getDigitalData();
-    }, 1000);
+    }, 100);
 
     function debounce(fn, delay = 200) {
       let timer = null;

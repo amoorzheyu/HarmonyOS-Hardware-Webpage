@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         发送鸿蒙硬件指令
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @match       https://console.huaweicloud.com/iotdm/*
+// @version      0.2
+// @match        https://console.huaweicloud.com/iotdm/*
 // @grant        GM_xmlhttpRequest
 // @connect      localhost
 // ==/UserScript==
@@ -10,16 +10,17 @@
 (function () {
   "use strict";
 
-  // 可变的目标选项（初始也可保持任意结构，后端返回时覆盖）
   let targetOptions = { service: "", command: "", value: "" };
+  let lastCase = {
+    Agriculture_Control_light: { value: "OFF" },
+    Agriculture_Control_Motor: { value: "OFF" },
+  };
 
+  let counter = 0;      // 流程步数：0=service, 1=command, 2=value, 3=click, 4=待检测
+  let sending = false;  // 是否在一个流程内
+  let isSend = false;   // 标记当前数据是否需要发
 
-  let counter = 0;
-  /**
-   * 使用 GM_xmlhttpRequest 强化跨域 GET 请求
-   * 假设后端提供 GET /options 返回 JSON 数组或对象
-   */
-  function fetchTargetOptions() {
+  async function fetchTargetOptions() {
     return new Promise((resolve, reject) => {
       GM_xmlhttpRequest({
         method: "GET",
@@ -28,7 +29,6 @@
         onload(res) {
           if (res.status >= 200 && res.status < 300 && res.response) {
             targetOptions = res.response;
-            console.log("已获取 targetOptions:", targetOptions);
             resolve();
           } else {
             reject(new Error(`请求失败，状态 ${res.status}`));
@@ -41,38 +41,26 @@
     });
   }
 
-  /**
-   * 打开下拉并点击匹配项，完成后 resolve
-   */
   function setSelectValue(rootItem, text) {
-    if (!rootItem) return resolve();
+    if (!rootItem) return;
     const selectEl = rootItem.closest("ti-select");
-    if (!selectEl) return resolve();
-
+    if (!selectEl) return;
     const selectId = selectEl.getAttribute("id");
     const dropdownBtn = selectEl.querySelector(
       `#${CSS.escape(selectId)}_dominator .ti3-select-dominator-dropdown-btn`
     );
-    if (!dropdownBtn) return resolve();
+    if (!dropdownBtn) return;
     dropdownBtn.click();
-
     setTimeout(() => {
       document.querySelectorAll(".ti3-overflow-padding").forEach((option) => {
-        if (text == "ON") {
-          console.log(option);
-        }
         const txt = option.querySelector("span")?.textContent;
         if (txt && txt.includes(text)) {
-          console.log("点击:", txt);
           option.click();
         }
       });
     }, 100);
   }
 
-  /**
-   * 读取当前选中文本
-   */
   function getSelectOptText(selectElement) {
     return (
       selectElement?.querySelector(".ti3-overflow-padding>span")?.textContent ||
@@ -80,7 +68,6 @@
     );
   }
 
-  // 三项异步任务：服务、命令、值
   function modifyServiceTask(rootItem, item) {
     const current = getSelectOptText(rootItem);
     if (current !== item.service) {
@@ -102,19 +89,8 @@
     }
   }
 
-  // 主循环：拉取配置 → 串行执行三项任务 → 点击发送
+  // 主循环
   async function runLoop() {
-    try {
-      if (counter == 3) {
-        document?.getElementById("ti_auto_id_39")?.click();
-        await fetchTargetOptions();
-        counter = 0;
-      }
-    } catch (err) {
-      console.error("fetchTargetOptions 错误：", err);
-      return;
-    }
-
     let serviceRoots = document.querySelectorAll(
       "#Select\\.Device\\.RegisterDevice_resourceName_dominator_input"
     );
@@ -122,28 +98,67 @@
       document.getElementById("light_dominator_input") ||
       document.getElementById("motor_dominator_input");
 
-    if (!serviceRoots.length || !valueRoot) {
-      return;
+    // ===== 0. 检查是否需要进入新一轮流程 =====
+    if (!sending && counter === 0) {
+      // 检查数据是否需要发送
+      try {
+        await fetchTargetOptions();
+      } catch (err) {
+        console.error("fetchTargetOptions 错误：", err);
+        return;
+      }
+      // 判断需不需要触发新流程
+      const cmd = targetOptions.command;
+      if (
+        !cmd ||
+        !lastCase[cmd] ||
+        lastCase[cmd].value == targetOptions.value
+      ) {
+        // 不需要发，等待下一次检测
+        return;
+      }
+      // 有新数据需要发
+      sending = true;
+      isSend = true;
+      counter = 0; // 开始新流程
+      // 更新已发记录
+      lastCase[cmd].value = targetOptions.value;
+      console.log("检测到数据变更，准备执行新一轮指令流程！");
     }
-    switch (counter) {
-      case 0:
-        modifyServiceTask(serviceRoots[0], targetOptions);
-        break;
-      case 1:
-        modifyCommandTask(serviceRoots[1], targetOptions);
-        break;
-      case 2:
-        modifyValueTask(valueRoot, targetOptions);
-        break;
+
+    // ===== 1. 正在执行流程 0-1-2-3 步 =====
+    if (sending && isSend) {
+      if (!serviceRoots.length || !valueRoot) {
+        // UI 还没加载好，等待
+        return;
+      }
+      switch (counter) {
+        case 0:
+          modifyServiceTask(serviceRoots[0], targetOptions);
+          break;
+        case 1:
+          modifyCommandTask(serviceRoots[1], targetOptions);
+          break;
+        case 2:
+          modifyValueTask(valueRoot, targetOptions);
+          break;
+        case 3:
+          document?.getElementById("ti_auto_id_39")?.click();
+          sending = false;   // 结束流程
+          isSend = false;
+          counter = 0;
+          return; // 此轮结束，等待下一轮检测
+      }
+      counter++;
     }
-    counter++;
   }
 
   window.addEventListener("load", () => {
-        if (!location.hash.includes("dm-portal/monitor/online-debugger")) {
-    console.log("当前不是在线调试页，不执行脚本");
-    return;
-  }
-    setInterval(runLoop, 200);
+    console.log("指令发送脚本加载成功！");
+    if (!location.hash.includes("dm-portal/monitor/online-debugger")) {
+      console.log("当前不是在线调试页，不执行脚本");
+      return;
+    }
+    setInterval(runLoop, 300);
   });
 })();
